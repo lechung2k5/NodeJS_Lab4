@@ -1,0 +1,49 @@
+<div class="max-w-md mx-auto py-16">
+    <div class="bg-white rounded-[2.5rem] shadow-2xl p-12 border border-slate-100">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-black text-slate-800 tracking-tight">Gia nhập đội ngũ</h1>
+            <p class="text-slate-400 mt-2 font-medium text-sm">Kiến tạo tương lai cùng LeChung Tech</p>
+        </div>
+
+        <form action="/register" method="POST" class="space-y-6">
+            <div class="space-y-2">
+                <label class="text-sm font-bold text-slate-700 ml-1">Tên đăng nhập</label>
+                <input type="text" name="username" required 
+                    class="w-full px-5 py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition shadow-inner placeholder-slate-300"
+                    placeholder="Ví dụ: chung_admin">
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-sm font-bold text-slate-700 ml-1">Mật khẩu</label>
+                <input type="password" name="password" required 
+                    class="w-full px-5 py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition shadow-inner placeholder-slate-300"
+                    placeholder="••••••••">
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-sm font-bold text-slate-700 ml-1">Vai trò hệ thống</label>
+                <div class="relative">
+                    <select name="role" required 
+                        class="w-full px-5 py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none appearance-none transition shadow-inner font-medium text-slate-600">
+                        <option value="staff">Nhân viên (Staff)</option>
+                        <option value="admin">Quản trị viên (Admin)</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+                        <svg class="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" 
+                class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold shadow-xl hover:bg-indigo-600 hover:-translate-y-1 transition duration-300 mt-4">
+                Tạo tài khoản
+            </button>
+        </form>
+        
+        <p class="text-center mt-8 text-slate-500 text-sm">
+            Đã là thành viên? <a href="/login" class="text-indigo-600 font-bold hover:underline">Đăng nhập tại đây</a>
+        </p>
+    </div>
+</div>

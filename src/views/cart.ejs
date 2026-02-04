@@ -1,0 +1,49 @@
+<div class="max-w-5xl mx-auto py-10 space-y-8">
+    <div class="flex items-center justify-between">
+        <h1 class="text-3xl font-black text-slate-800">Giỏ hàng của bạn</h1>
+        <a href="/products" class="text-indigo-600 font-bold hover:underline transition">← Tiếp tục mua sắm</a>
+    </div>
+
+    <% if (cart && cart.length > 0) { %>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-2 space-y-4">
+                <% cart.forEach((item, index) => { %>
+                    <div class="bg-white p-6 rounded-[2rem] border border-slate-100 flex items-center shadow-sm">
+                        <div class="w-24 h-24 bg-slate-50 rounded-2xl overflow-hidden">
+                            <img src="<%= item.url_image || 'https://via.placeholder.com/400' %>" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-6 flex-1">
+                            <h3 class="font-bold text-slate-800 text-lg"><%= item.name %></h3>
+                            <p class="text-indigo-600 font-black text-xl"><%= item.price.toLocaleString() %> đ</p>
+                        </div>
+                        <div class="flex flex-col items-end space-y-2">
+                            <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm font-bold">x <%= item.cartQuantity %></span>
+                            <form action="/products/cart/remove" method="POST">
+                                <input type="hidden" name="index" value="<%= index %>">
+                                <button type="submit" class="text-red-400 hover:text-red-600 text-xs font-bold transition">Xóa</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-2xl border border-slate-100 h-fit">
+                <h2 class="text-xl font-bold mb-6">Tóm tắt đơn hàng</h2>
+                <div class="border-t border-slate-50 pt-4 flex justify-between mb-8">
+                    <span class="text-lg font-bold">Tổng cộng:</span>
+                    <span class="text-2xl font-black text-indigo-600"><%= total.toLocaleString() %> đ</span>
+                </div>
+                <form action="/products/cart/checkout" method="POST">
+                    <button type="submit" class="w-full bg-indigo-600 text-white py-5 rounded-2xl font-bold shadow-xl hover:bg-indigo-700 transition">
+                        Xác nhận đặt hàng
+                    </button>
+                </form>
+            </div>
+        </div>
+    <% } else { %>
+        <div class="bg-white rounded-[3rem] p-20 text-center border border-dashed border-slate-200">
+            <h2 class="text-2xl font-bold text-slate-800 mb-2">Giỏ hàng trống</h2>
+            <a href="/products" class="inline-block bg-indigo-600 text-white px-10 py-4 rounded-2xl font-bold mt-4">Mua sắm ngay</a>
+        </div>
+    <% } %>
+</div>

@@ -1,0 +1,22 @@
+# Các thư mục phụ thuộc (Rất nặng, không nên push)
+node_modules/
+
+# File cấu hình biến môi trường (Chứa Access Key nhạy cảm)
+.env
+
+# Các file khóa riêng tư của AWS hoặc SSH
+*.pem
+lechung-key.pem
+
+# File log khi chạy npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Các file tạm của hệ điều hành
+.DS_Store
+Thumbs.db
+
+# Các file build (nếu có)
+dist/
+build/
