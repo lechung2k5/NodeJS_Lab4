@@ -1,0 +1,55 @@
+<div class="flex flex-col space-y-8 p-6">
+    <div class="flex items-center justify-between">
+        <div>
+            <h2 class="text-3xl font-black text-slate-800">Nhật ký hệ thống</h2>
+            <p class="text-slate-500 font-medium">Theo dõi mọi thay đổi từ Admin và Staff</p>
+        </div>
+        <a href="/products" class="px-5 py-2 bg-slate-100 text-slate-600 rounded-xl font-bold hover:bg-slate-200 transition">
+            ← Quay lại
+        </a>
+    </div>
+
+    <div class="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden">
+        <table class="w-full text-left">
+            <thead class="bg-slate-50 border-b border-slate-100">
+                <tr>
+                    <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Thời gian</th>
+                    <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Hành động</th>
+                    <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">ID Sản phẩm</th>
+                    <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Người thực hiện</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-50">
+                <% if (logs.length > 0) { %>
+                    <% logs.forEach(log => { %>
+                        <tr class="hover:bg-slate-50/50 transition">
+                            <td class="px-6 py-4 text-sm text-slate-600 font-medium">
+                                <%= new Date(log.time).toLocaleString('vi-VN') %>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 text-[10px] font-bold uppercase rounded-full 
+                                    <%= log.action === 'CREATE' ? 'bg-emerald-100 text-emerald-600' : 
+                                       log.action === 'UPDATE' ? 'bg-blue-100 text-blue-600' : 'bg-red-100 text-red-600' %>">
+                                    <%= log.action %>
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-xs text-slate-400"><%= log.productId %></td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xs">
+                                        <%= log.userId.charAt(0).toUpperCase() %>
+                                    </div>
+                                    <span class="text-sm font-bold text-slate-700"><%= log.userId %></span>
+                                </div>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="4" class="px-6 py-20 text-center text-slate-400 italic">Chưa có dữ liệu nhật ký nào được ghi nhận.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>

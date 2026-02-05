@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const multerS3 = require('multer-s3');
-const { s3Client } = require('../configs/awsConfig'); 
+const { s3Client } = require('../configs/awsConfig');
 const { isAuthenticated, isAdmin } = require('../middlewares/authMiddleware');
 const productController = require('../controllers/productController');
+
 const upload = multer({
     storage: multerS3({
         s3: s3Client,
@@ -16,6 +17,7 @@ const upload = multer({
 
 router.get('/', isAuthenticated, productController.getAll);
 router.get('/search', isAuthenticated, productController.handleSearch);
+router.get('/logs', isAuthenticated, isAdmin, productController.viewLogs);
 router.get('/add', isAuthenticated, isAdmin, productController.renderAddForm);
 router.post('/add', isAuthenticated, isAdmin, upload.single('image'), productController.handleCreate);
 router.get('/edit/:id', isAuthenticated, isAdmin, productController.renderEditForm);
@@ -26,4 +28,5 @@ router.get('/cart', isAuthenticated, productController.renderCart);
 router.post('/cart/remove', isAuthenticated, productController.removeFromCart);
 router.post('/cart/checkout', isAuthenticated, productController.handleCheckout);
 router.get('/order-success', isAuthenticated, productController.renderOrderSuccess);
+
 module.exports = router;

@@ -29,9 +29,14 @@
         </form>
 
         <% if (user && user.role === 'admin') { %>
-            <a href="/products/add" class="bg-emerald-500 text-white px-6 py-2 rounded-xl hover:bg-emerald-600 font-bold transition shadow-lg shadow-emerald-100">
-                + Nhập hàng
-            </a>
+            <div class="flex gap-2">
+                <a href="/products/logs" class="bg-slate-800 text-white px-6 py-2 rounded-xl hover:bg-slate-900 font-bold transition shadow-lg shadow-slate-200">
+                    📋 Xem lịch sử
+                </a>
+                <a href="/products/add" class="bg-emerald-500 text-white px-6 py-2 rounded-xl hover:bg-emerald-600 font-bold transition shadow-lg shadow-emerald-100">
+                    + Nhập hàng
+                </a>
+            </div>
         <% } %>
     </div>
 
@@ -138,7 +143,6 @@
     keywordInput.addEventListener('input', () => {
         clearTimeout(typingTimer);
         typingTimer = setTimeout(() => {
-            // Đưa về trang 1 khi search mới
             searchForm.querySelector('input[name="page"]').value = 1;
             searchForm.submit();
         }, 500);
@@ -149,7 +153,6 @@
         searchForm.submit();
     });
 
-    // Giữ focus và vị trí con trỏ khi search auto-submit
     const val = keywordInput.value;
     if (val) {
         keywordInput.focus();
